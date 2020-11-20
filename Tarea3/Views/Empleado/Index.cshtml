@@ -1,0 +1,71 @@
+﻿@model IEnumerable<Tarea3.Models.Empleado>
+
+@{
+    ViewData["Title"] = "Inicio";
+}
+
+<h1>Empleados</h1>
+
+<p>
+    <a href="/Empleado/Create" class="btn btn-primary">Crear Nuevo</a>
+</p>
+
+<table class="table table-bordered" id="myTable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Codigo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+               @Html.DisplayNameFor(model => model.Sueldo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaIngreso)
+            </th>
+            <th>
+                Opciones de Mantenimiento
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Codigo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sueldo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaIngreso)
+            </td>
+            <td>
+                <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Codigo">Editar</a> |
+                <a class="btn btn-info" asp-action="Details" asp-route-id="@item.Codigo">Detalles</a> |
+                <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Codigo">Eliminar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+@section Scripts{
+
+    <script>
+
+        $(document).ready(function () {
+
+            $('#myTable').DataTable();
+
+        });
+    </script>
+
+}
+
+
